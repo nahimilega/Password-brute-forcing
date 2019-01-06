@@ -20,7 +20,7 @@ The previous layer is also called the generator layer, as it generates new combi
 The current layer is called the curr_layer
 """
 
-
+import os
 
 from time import sleep #useful for testing
 
@@ -35,7 +35,9 @@ def initialiser(start,end):
 	list_combinations=[]
 	for i in range(97,end+1):
 		list_combinations.append(chr(i))
-		print(list_combinations[i-97]) #slow-ish step but only 26 values so no worries
+		#slow-ish step but only 26 values so no worries
+		bash_command="bash input_passwd.sh "+str(list_combinations[i-97])
+		os.system(bash_command)
 	return list_combinations
 
 def printer(list_combinations=[]):
@@ -50,7 +52,9 @@ def printer(list_combinations=[]):
 		for j in range(start,end+1):
 			new_combo=list_combinations[i]+chr(j)
 			new_combinations.append(new_combo)
-			print(new_combo)
+			#print(new_combo)
+			bash_command="bash input_passwd.sh "+str(new_combo)
+			os.system(bash_command)
 
 	#This nested loop will always end at 'zz...zz'
 	#Thus, making the recursive call at the end of the nested for loop is correct
