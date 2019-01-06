@@ -30,6 +30,16 @@ end=122 #z
 curr_length=1 #current length of password combinations
 
 
+
+
+
+def answerchecker(output,input_value):
+	#print(output[0])
+	
+	if(output[0]!="Incorrect entry.\n"):
+		print("The password is ",input_value)
+		exit()
+
 def initialiser(start,end):
 	#We need to pre-compute these(1-length combinations) seperately in order to be able to generate 2-length combinations	
 	list_combinations=[]
@@ -37,7 +47,8 @@ def initialiser(start,end):
 		list_combinations.append(chr(i))
 		#slow-ish step but only 26 values so no worries
 		bash_command="bash input_passwd.sh "+str(list_combinations[i-97])
-		os.system(bash_command)
+		output=os.popen(bash_command).readlines()
+		answerchecker(output,list_combinations[i-97])
 	return list_combinations
 
 def printer(list_combinations=[]):
@@ -54,7 +65,8 @@ def printer(list_combinations=[]):
 			new_combinations.append(new_combo)
 			#print(new_combo)
 			bash_command="bash input_passwd.sh "+str(new_combo)
-			os.system(bash_command)
+			output=os.popen(bash_command).readlines()
+			answerchecker(output,new_combo)
 
 	#This nested loop will always end at 'zz...zz'
 	#Thus, making the recursive call at the end of the nested for loop is correct

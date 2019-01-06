@@ -1,7 +1,7 @@
 #! /bin/bash
 #This script cannot be changed, except the password string
 #This is because we are trying to simulate how a real-life input file would be
-passwd=c
+passwd=cn
 #read -sp "Enter your password: " attempt
 #echo You enterred: $attempt #temporary; for testing
 attempt=$1
@@ -13,5 +13,5 @@ if [[ $attempt == $passwd ]];
 
 else
 	echo Incorrect entry.
-
+	
 fi
